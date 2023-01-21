@@ -21,10 +21,13 @@ export class LoginComponent {
   login(){
     console.log(this.loginForm.value);
     const {email, password} = this.loginForm.value;
-    this.authService.login(email, password).subscribe((resp) => {
-      console.log(resp)
+    this.authService.login(email, password).subscribe((ok) => {
+      if(ok){
+        this.router.navigateByUrl('/dashboard')
+      }else{
+        // Crear mensaje de error
+      }
     })
-    //this.router.navigateByUrl('/dashboard');
   }
 
 }
