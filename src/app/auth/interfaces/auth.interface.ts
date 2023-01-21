@@ -5,3 +5,8 @@ export interface IAuthResponse {
   token?: string;
   msg?: string;
 }
+
+export interface IUsuario{
+  uid: string;
+  name: string;
+}
