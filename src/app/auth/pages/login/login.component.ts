@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -19,13 +20,12 @@ export class LoginComponent {
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService){}
 
   login(){
-    console.log(this.loginForm.value);
     const {email, password} = this.loginForm.value;
     this.authService.login(email, password).subscribe((ok) => {
-      if(ok){
+      if(ok === true){
         this.router.navigateByUrl('/dashboard')
       }else{
-        // Crear mensaje de error
+        Swal.fire('Error', ok.msg, 'error');
       }
     })
   }
