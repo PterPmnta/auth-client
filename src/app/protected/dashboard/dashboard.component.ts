@@ -23,6 +23,7 @@ export class DashboardComponent {
 
   logOut(){
     this.router.navigateByUrl('/auth/login');
+    this.authService.logOut();
   }
 
 }
