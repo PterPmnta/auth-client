@@ -17,7 +17,9 @@ export class LoginComponent {
     password: ['', [Validators.required, Validators.minLength(6)]]
   })
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService){}
+  constructor(private formBuilder: FormBuilder,
+              private router: Router,
+              private authService: AuthService){}
 
   login(){
     const {email, password} = this.loginForm.value;
