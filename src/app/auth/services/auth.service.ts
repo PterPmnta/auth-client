@@ -39,6 +39,27 @@ export class AuthService {
       )
   }
 
+  userRegister(name:string, email: string, password: string){
+
+    const url = `${this.baseUrl}/auth/new`
+    const body = {name, email, password}
+
+    return this.http.post<IAuthResponse>(url, body)
+      .pipe(
+        tap(resp => {
+          if(resp.ok){
+            localStorage.setItem('token', resp.token!)
+            this._usuario = {
+              name: resp.name!,
+              uid: resp.uid!
+            }
+          }
+        }),
+        map(resp => resp.ok),
+        catchError(err => of(err.error))
+      )
+  }
+
   validateToken(){
     const url = `${this.baseUrl}/auth/renew`
     const token = localStorage.getItem('token')
