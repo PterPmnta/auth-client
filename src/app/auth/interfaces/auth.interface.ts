@@ -4,9 +4,11 @@ export interface IAuthResponse {
   name?: string;
   token?: string;
   msg?: string;
+  email?: string;
 }
 
 export interface IUsuario{
   uid: string;
   name: string;
+  email: string
 }
